@@ -1,0 +1,21 @@
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{# Display a form #}
+
+<form action="/url/to/submit/" method="post" class="form">
+    {% csrf_token %}
+        <h1>{{ insert_me }}</h1>
+        <a href="#" class="btn btn-danger">
+            {% bootstrap_icon "star" %} Submit
+        </a>
+
+
+</form>
