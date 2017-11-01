@@ -1,5 +1,7 @@
-{% load bootstrap3 %}
+<!DOCTYPE html>
 
+{% load bootstrap3 %}
+{% load staticfiles %}
 {# Load CSS and JavaScript #}
 
 {% bootstrap_css %}
@@ -9,13 +11,26 @@
 {% bootstrap_messages %}
 
 {# Display a form #}
-
-<form action="/url/to/submit/" method="post" class="form">
-    {% csrf_token %}
-        <h1>{{ insert_me }}</h1>
-        <a href="#" class="btn btn-danger">
-            {% bootstrap_icon "star" %} Submit
-        </a>
-
-
-</form>
+<html><head>
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+</head></html>
+<body>
+  <h1>Here are your access records:</h1>
+  <h2>Green</h2>
+    {% if access_records %}
+      <table>
+        <tr>
+          <th>Site name</th>
+          <th>Date Accessed</th>
+        </tr>
+        {% for acc in access_records %}
+          <tr>
+            <td>{{ acc.name }}</td>
+            <td>{{ acc.date }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p>no access record</p>
+    {% endif %}
+</body>
